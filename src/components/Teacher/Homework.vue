@@ -34,7 +34,9 @@
                   </v-date-picker>
                 </v-menu>
               </v-col>
-              <v-col class="d-flex" cols="4"></v-col>
+              <v-col class="d-flex" cols="4">
+                <v-select :items="Class" label="Class" outlined></v-select>
+              </v-col>
 
               <v-col class="d-flex" cols="4">
                 <v-select :items="Section" label="Section" outlined></v-select>

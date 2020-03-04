@@ -7,8 +7,8 @@
           <v-row>
             <v-col cols="6">
               <v-row>
-                <v-col cols="6">
-                  <v-select :items="Class" label="Class" outlined></v-select>
+                <v-col cols="6" v-for="t in tt" :key="t">
+                  <v-select :items="Class" label="Class" outlined>{{t.class}}</v-select>
                 </v-col>
                 <v-col cols="6">
                   <v-select :items="Class" label="Section" outlined></v-select>
@@ -91,9 +91,18 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { mapState, mapGetters } from "vuex";
 
 export default Vue.extend({
   name: "timetable_admin",
+  mounted() {
+    this.$store.dispatch("timetable");
+  },
+  computed: {
+    ...mapState(["timetable"]),
+    ...mapGetters(["tt"])
+  },
+
   data: () => ({
     balance: [
       {

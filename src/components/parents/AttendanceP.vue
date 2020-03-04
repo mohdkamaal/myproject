@@ -17,34 +17,60 @@
         </v-toolbar>
         <v-container>
           <v-row>
-            <v-col cols="6">
-              <v-card width="400" height="150">
-                <v-card-title color="grey" class="justify-center">Today</v-card-title>
-                <v-chip color="green" class="white--text justify-center">Present</v-chip>
+            <v-col cols="4">
+              <v-card>
+                <v-card-title
+                  class="cyan lighten-3 justify-center font-weight-bold subtitle-1"
+                >Today</v-card-title>
+                <div class="text-center">
+                  <v-chip
+                    color="green"
+                    class="white--text ma-3"
+                    v-if="detail"
+                  >Present {{ detail.today }}</v-chip>
+                </div>
+                <v-divider></v-divider>
+                <v-card-title
+                  primary-title
+                  class="deep-purple accent-1 justify-center font-weight-bold subtitle-1"
+                >Last Week</v-card-title>
+                <div class="text-center">
+                  <v-chip
+                    color="green"
+                    class="white--text ma-3"
+                  >Present {{ detail.presentLastWeek }}</v-chip>
+
+                  <v-chip color="red" class="white--text ma-3">Absent {{ detail.absentLastWeek }}</v-chip>
+                </div>
+                <v-divider></v-divider>
+                <v-card-title
+                  primary-title
+                  class="blue lighten-2 justify-center font-weight-bold subtitle-1"
+                >Last Month</v-card-title>
+                <div class="text-center">
+                  <v-chip
+                    color="green"
+                    class="white--text ma-3"
+                  >Present {{ detail.presentLastMonth }}</v-chip>
+                  <v-chip color="red" class="white--text ma-3">Absent {{ detail.absentLastMonth }}</v-chip>
+                </div>
+                <v-divider></v-divider>
+                <v-card-title
+                  primary-title
+                  class="pink lighten-3 justify-center font-weight-bold subtitle-1"
+                >Session</v-card-title>
+                <div class="text-center">
+                  <v-chip color="green" class="white--text ma-3">Present {{ detail.presentSession }}</v-chip>
+                  <v-chip
+                    color="red"
+                    class="white--text justify-center ma-3"
+                  >Absent {{ detail.absentSession }}</v-chip>
+                </div>
               </v-card>
             </v-col>
-            <v-col cols="6">
-              <v-card width="400" height="150">
-                <v-card-title primary-title class="justify-center">Last Week</v-card-title>
-                <v-chip color="green" class="white--text">Present</v-chip>
-                <v-chip color="red" class="white--text">Absent</v-chip>
-              </v-card>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col cols="6">
-              <v-card width="400" height="150">
-                <v-card-title primary-title class="justify-center">Last Month</v-card-title>
-                <v-chip color="green" class="white--text">Present</v-chip>
-                <v-chip color="red" class="white--text">Absent</v-chip>
-              </v-card>
-            </v-col>
-            <v-col cols="6">
-              <v-card width="400" height="150">
-                <v-card-title primary-title class="justify-center">Session</v-card-title>
-                <v-chip color="green" class="white--text">Present</v-chip>
-                <v-chip color="red" class="white--text">Absent</v-chip>
-              </v-card>
+
+            <v-col cols="6" offset="1">
+              <AttendanceMore />
             </v-col>
           </v-row>
         </v-container>
@@ -54,22 +80,22 @@
   </v-row>
 </template>
 
-
 <script lang="ts">
 import Vue from "vue";
 import AttendanceMore from "./Attendance_more.vue";
 import { mdiCalendar } from "@mdi/js";
-import { mapState, mapActions } from "vuex";
+import { mapState, mapGetters } from "vuex";
 export default Vue.extend({
-  name: "AttendanceP",
+  name: "attendanceP",
   components: {
-    // AttendanceMore
+    AttendanceMore
   },
   mounted() {
-    this.$store.dispatch("loadAttandance");
+    this.$store.dispatch("attendance");
   },
   computed: {
-    ...mapState(["Attandance"])
+    ...mapState(["attandance"]),
+    ...mapGetters(["detail"])
     // computedDateFormatted() {
     //   return this.formatDate(this.date);
     // }

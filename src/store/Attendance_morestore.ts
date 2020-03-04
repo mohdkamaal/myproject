@@ -1,31 +1,35 @@
-import Vue from "vue";
-import Vuex from "vuex";
 import axios from "axios";
 
-Vue.use(Vuex, axios);
-
-export default new Vuex.Store({
+export default {
   state: {
-    Attendmore: []
+    //data
+    attendancemore: []
   },
-  mutations: {
-    SET_ATTENDMORE(state, Attendmore) {
-      state.Attendmore = Attendmore;
-    }
+  getters: {
+    detailmore: state => state.attendancemore
   },
   actions: {
-    loadAttendmore({ commit }) {
-      axios
-        .get("http://192.168.1.136:8000/api/parent/1/profile")
-        .then(data => {
-          console.log(data.data);
-          let Attendmore = data.data;
-          commit("SET_ATTENDMORE", Attendmore);
-        })
-        .catch(error => {
-          console.log(error);
-        });
+    // method
+    // get request..
+    async attendancemore({ commit }) {
+      try {
+        const response = await axios.get(
+          "http://192.168.1.136:8000/api/student/1/attandance/2020-01-01/2020-03-30"
+        );
+        console.log(response.data.student.getClass);
+        const data = response.data;
+        commit("set_attendancemore", data);
+      } catch (error) {
+        console.log("error");
+        alert(error);
+      }
     }
+    // post request..
+  },
+  mutations: {
+    //used for changing the state
+    set_attendancemore: (state, attendancemore) =>
+      (state.attendancemore = attendancemore)
   },
   modules: {}
-});
+};
