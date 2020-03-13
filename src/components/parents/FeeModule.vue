@@ -20,11 +20,15 @@
         <!-- content here -->
         <v-container>
           <v-data-table :headers="headers" :items="fee" class="elevation-1">
-            <template v-slot:fee.fees="{fee}" items="fee">
-              <v-chip color="green white--text">{{fee.fees.month}}</v-chip>
-            </template>
+            <!-- <template v-slot:fee.month="{fee}">
+              <v-chip color="green white--text">{{fee.month}}</v-chip>
+            </template>-->
+
             <template v-slot:fee.total="{fee}">
               <v-chip color="green white--text">{{fee.total }}</v-chip>
+            </template>
+            <template v-slot:fee.paid="{fee}">
+              <v-chip color="green white--text">{{fee.paid}}</v-chip>
             </template>
             <template v-slot:fee.remaining="{fee}">
               <v-chip color="red white--text">{{ fee.remaining }}</v-chip>
@@ -74,8 +78,8 @@ export default Vue.extend({
       {
         text: "Months",
         align: "left",
-        sortable: false
-        // value: "name"
+        sortable: false,
+        value: "month"
       },
       { text: "Total", value: "total" },
       { text: "Paid", value: "paid" },

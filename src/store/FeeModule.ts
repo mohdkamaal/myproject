@@ -15,7 +15,7 @@ export default {
     async feemodule({ commit }) {
       try {
         const response = await axios.get(
-          "http://192.168.1.136:8000/api/student/1/fee"
+          "http://192.168.1.136:8000/api/student/1/fee/web"
         );
         console.log(response.data);
         const data = response.data;

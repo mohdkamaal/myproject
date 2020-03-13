@@ -34,29 +34,41 @@
                   </v-date-picker>
                 </v-menu>
               </v-col>
-              <v-col class="d-flex" cols="4">
-                <v-select :items="Class" label="Class" outlined></v-select>
-              </v-col>
 
               <v-col class="d-flex" cols="4">
-                <v-select :items="Section" label="Section" outlined></v-select>
+                <v-select v-model="selectedClass" label=" Class" :items="work.class" outlined></v-select>
               </v-col>
 
-              <v-col class="d-flex" cols="6">
-                <v-select :items="Topic" label="Topic" outlined></v-select>
+              <v-col class="d-flex" cols="4">
+                <v-select v-model="selectedSection" label=" Section" :items="sections" outlined></v-select>
               </v-col>
 
+              <!-- <v-col class="d-flex" cols="4" v-for="s in section" :key="s">
+                <v-select :items="s" label="sec" outlined></v-select>
+              </v-col>-->
+
+              <!-- <select v-model="selectedClass">
+                <option value>Select a Class</option>
+                <option v-for="i in work" :key="i">{{i}}</option>
+              </select>-->
+            </v-row>
+            <v-row>
               <v-col class="d-flex" cols="6">
-                <v-select :items="Subject" label="Subjects" outlined></v-select>
-              </v-col>
-              <v-col class="d-flex" cols="12">
-                <v-textarea
-                  clearable
-                  clear-icon="x"
-                  label="Homework"
-                  value="Write here or Speech"
+                <v-select
+                  :items="subjects"
+                  v-model="selectedSubject"
+                  label="Subjects"
+                  item-text="subject"
                   outlined
-                ></v-textarea>
+                ></v-select>
+              </v-col>
+              <v-col class="d-flex" cols="6">
+                <v-select :items="topics" label="Topic" outlined></v-select>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col class="d-flex" cols="12">
+                <v-textarea clearable clear-icon="x" label="Homework" outlined></v-textarea>
               </v-col>
             </v-row>
           </v-card>
@@ -136,9 +148,67 @@
 import Vue from "vue";
 import { mdiCalendar } from "@mdi/js";
 import calander from "../Calendercall.vue";
+import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
 
 export default Vue.extend({
-  name: "feelinfo",
+  name: "Homework",
+  mounted() {
+    this.$store.dispatch("homework");
+    // this.$store.dispatch("section");
+    // this.$store.dispatch("subjects");
+  },
+  methods: {
+    ...mapActions(["homework"]),
+    ...mapMutations(["set_homework"])
+    // ...mapActions(["section"]),
+    // ...mapMutations(["set_section"]),
+    // ...mapActions(["subjects"]),
+    // ...mapMutations(["set_subjects"])
+  },
+  computed: {
+    ...mapState(["homework"]),
+    // ...mapState(["section"]),
+    // ...mapState(["subjects"])
+    ...mapGetters(["work"])
+  },
+
+  watch: {
+    selectedClass: function() {
+      // Clear previously selected values
+      this.sections = [];
+      this.subjects = [];
+      this.topics = [];
+      this.selectedSection = "";
+      this.selectedSubject = "";
+      this.selectedTopic = "";
+      // Populate list of countries in the second dropdown
+
+      this.sections = this.work[this.selectedClass].section;
+    },
+    selectedSection: function() {
+      // Clear previously selected values
+      this.subjects = [];
+      this.topics = [];
+      this.selectedSubject = "";
+      this.selectedTopic = "";
+      // Now we have a continent and country. Populate list of cities in the third dropdown
+
+      this.subjects = this.work[this.selectedClass][
+        this.selectedSection
+      ].subject;
+    },
+    selectedSubject: function() {
+      // Clear previously selected values
+      this.topics = [];
+      this.selectedTopic = "";
+      // Now we have a continent and country. Populate list of cities in the third dropdown
+
+      this.topics = this.work[this.selectedClass][this.selectedSection][
+        this.selectedSubject
+      ];
+    }
+  },
+
   data: () => ({
     tabs: null,
     Calender: mdiCalendar,
@@ -147,20 +217,33 @@ export default Vue.extend({
     },
     date: new Date().toISOString().substr(0, 10),
     menu: false,
+    // countries
+    sections: [],
+    // cities
+    subjects: [],
 
-    Class: ["I", "II", "III", "IV", "v"],
-    Section: ["A", "B", "C", "D"],
-    Topic: ["t1", "t2", "t3", "t4", "t5"],
-    Subject: ["English", "Hindi", "Urdu", "Science", "Maths"],
+    topics: [],
+    // Class
+    selectedClass: "",
+    // Section
+    selectedSection: "",
+    // Subject
+    selectedSubject: "",
+    selectedTopic: ""
 
-    balance: [
-      {
-        name: "Muskesh Singh",
-        rollno: "3",
-        father: "Mahesh Singh",
-        mobile: "9876567768"
-      }
-    ]
+    // Class: ["I", "II", "III", "IV", "v"],
+    // Section: ["A", "B", "C", "D"],
+    // Topic: ["t1", "t2", "t3", "t4", "t5"],
+    // Subject: ["English", "Hindi", "Urdu", "Science", "Maths"],
+
+    // balance: [
+    //   {
+    //     name: "Muskesh Singh",
+    //     rollno: "3",
+    //     father: "Mahesh Singh",
+    //     mobile: "9876567768"
+    //   }
+    // ]
   })
 });
 </script>

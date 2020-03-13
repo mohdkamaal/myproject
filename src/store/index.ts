@@ -6,6 +6,7 @@ import attendancemore from "./Attendance_morestore";
 import timetable from "./timetable_admin";
 import vatsw from "./VATSW";
 import feemodule from "./FeeModule";
+import homework from "./Homework";
 
 Vue.use(Vuex, axios);
 
@@ -23,6 +24,7 @@ export default new Vuex.Store({
     attendance,
     attendancemore,
     vatsw,
-    feemodule
+    feemodule,
+    homework
   }
 });

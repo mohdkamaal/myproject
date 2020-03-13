@@ -1,12 +1,7 @@
 <template>
   <!-- toolbar dialog -->
   <v-row justify="center">
-    <v-dialog
-      v-model="dialog"
-      fullscreen
-      hide-overlay
-      transition="dialog-bottom-transition"
-    >
+    <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
       <template v-slot:activator="{ on }">
         <v-btn color="primary" dark v-on="on">Query</v-btn>
       </template>
@@ -33,12 +28,8 @@
                     <v-icon>mdi-account-circle</v-icon>
                   </v-list-item-avatar>
                   <v-list-item-content>
-                    <v-list-item-title class="headline">
-                      {{ chips.name }}
-                    </v-list-item-title>
-                    <v-list-item-subtitle>
-                      {{ chips.subject }}
-                    </v-list-item-subtitle>
+                    <v-list-item-title class="headline">{{ chips.name }}</v-list-item-title>
+                    <v-list-item-subtitle>{{ chips.subject }}</v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
                 <v-card-actions>
@@ -63,9 +54,11 @@
 
 // script
 
-<script>
+<script lang="ts">
+import Vue from "vue";
 import { mdiCalendar, mdiEmail, mdiMessage } from "@mdi/js";
-export default {
+export default Vue.extend({
+  name: "qst",
   data: vm => ({
     date: new Date().toISOString().substr(0, 10),
     dateFormatted: vm.formatDate(new Date().toISOString().substr(0, 10)),
@@ -116,7 +109,7 @@ export default {
       return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
     }
   }
-};
+});
 </script>
 
 <style lang="scss" scoped>

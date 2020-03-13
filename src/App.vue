@@ -4,7 +4,7 @@
       <!-- <HelloWorld /> -->
       <!-- <Homework /> -->
       <!-- <attendanceP /> -->
-      <!-- <Test /> -->
+      <Test />
       <!-- <Attendance_more /> -->
       <!-- <UserDetails /> -->
       <!-- <TestA /> -->
@@ -12,26 +12,50 @@
       <!-- <VATSW /> -->
       <!-- <Announcement /> -->
       <!-- <conference /> -->
-      <FeeModule />
+      <!-- <FeeModule /> -->
+      <!-- <navbar /> -->
+      <!-- <Cards /> -->
+      <!-- <dashboard /> -->
+      <!-- <qst /> -->
+      <!-- <reminder /> -->
+      <!-- <FeeModule /> -->
+      <!-- <SchoolNews /> -->
+      <!-- <SchoolCalender /> -->
+      <!-- <Session /> -->
+      <ReturnBooks />
     </v-content>
   </v-app>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-// import HelloWorld from "./components/HelloWorld.vue";
+
+// // Teacher Panel
 // import Homework from "./components/Teacher/Homework.vue";
 // import Attendance from "./components/Teacher/Attendance.vue";
-// import UserDetails from "./components/UserDetails.vue";
-// import TestA from "./components/Test_a.vue";
-// import attendanceP from "./components/parents/attendanceP.vue";
-// import Test from "./components/parents/test.vue";
+// import HelloWorld from "./components/HelloWorld.vue";
+//
+// // Parents Panel
 // import Attendance_more from "./components/parents/Attendance_more.vue";
+// import FeeModule from "./components/parents/FeeModule.vue";
+// import reminder from "./components/parents/reminder.vue";
+// import SchoolNews from "./components/parents/SchoolNews.vue";
+// import Test from "./components/parents/test.vue";
+// import qst from "./components/parents/qst.vue";
+// import dashboard from "./components/parents/dashboard.vue";
+
+// // Admin Panel
 // import timetable_admin from "./components/Admin/timetable_admin.vue";
 // import VATSW from "./components/Admin/VATSW.vue";
 // import Announcement from "./components/Admin/Announcement.vue";
 // import Conference from "./components/Admin/Conference.vue";
-import FeeModule from "./components/parents/FeeModule.vue";
+
+// import navbar from "./components/Navbar";
+// import Cards from "./components/cards";
+// import UserDetails from "./components/UserDetails.vue";
+// import TestA from "./components/Test_a.vue";
+// import Session from "./components/Admin/Session.vue";
+import ReturnBooks from "./components/Admin/ReturnBooks.vue";
 export default Vue.extend({
   name: "App",
 
@@ -47,7 +71,16 @@ export default Vue.extend({
     // VATSW
     // Announcement
     // Conference
-    FeeModule
+    // FeeModule
+    // navbar,
+    // Cards,
+    // dashboard,
+    // qst
+    // reminder
+    // FeeModule
+    // SchoolNews
+    // Session
+    ReturnBooks
   },
 
   data: () => ({
