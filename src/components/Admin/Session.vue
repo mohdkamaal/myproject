@@ -262,3 +262,14 @@ export default Vue.extend({
   // },
 });
 </script>
+
+<style lang="scss" scoped>
+.stroke-1 {
+  background-color: rgb(97, 97, 97);
+  border: 3px solid #ff02c8;
+}
+.stroke-2 {
+  background-color: rgb(136, 135, 135);
+  border: 3px solid #7970ff;
+}
+</style>

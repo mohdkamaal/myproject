@@ -4,7 +4,7 @@
       <!-- <HelloWorld /> -->
       <!-- <Homework /> -->
       <!-- <attendanceP /> -->
-      <Test />
+      <!-- <Test /> -->
       <!-- <Attendance_more /> -->
       <!-- <UserDetails /> -->
       <!-- <TestA /> -->
@@ -22,7 +22,8 @@
       <!-- <SchoolNews /> -->
       <!-- <SchoolCalender /> -->
       <!-- <Session /> -->
-      <ReturnBooks />
+      <!-- <ReturnBooks /> -->
+      <StudentDetails />
     </v-content>
   </v-app>
 </template>
@@ -55,7 +56,8 @@ import Vue from "vue";
 // import UserDetails from "./components/UserDetails.vue";
 // import TestA from "./components/Test_a.vue";
 // import Session from "./components/Admin/Session.vue";
-import ReturnBooks from "./components/Admin/ReturnBooks.vue";
+// import ReturnBooks from "./components/Admin/ReturnBooks.vue";
+import StudentDetails from "./components/Admin/StudentDetails.vue";
 export default Vue.extend({
   name: "App",
 
@@ -80,7 +82,8 @@ export default Vue.extend({
     // FeeModule
     // SchoolNews
     // Session
-    ReturnBooks
+    // ReturnBooks
+    StudentDetails
   },
 
   data: () => ({

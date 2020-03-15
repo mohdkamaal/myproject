@@ -46,7 +46,7 @@
             <v-card width="350">
               <v-list>
                 <v-list-item>
-                  <v-list-item-avatar class="stroke" color="grey" size="60">O</v-list-item-avatar>
+                  <v-list-item-avatar outlined class="stroke" size="60">O</v-list-item-avatar>
                   <v-list-item-content>
                     <v-list-item-title class="title">Student name</v-list-item-title>
                     <v-divider></v-divider>
@@ -231,10 +231,8 @@ export default Vue.extend({
   margin-left: 160px;
 
   .stroke {
-    stroke: red;
-    stroke-width: 1;
-    stroke-linecap: butt;
-    stroke-dasharray: 0;
+    background-color: rgb(97, 97, 97);
+    border: 3px solid #00b3ff;
   }
 }
 </style>
